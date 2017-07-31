@@ -1,13 +1,11 @@
 package main
 
-import "fmt"
-
 func main() {
-	arr := []int{1, 23, 4, 5, 2, 9, 10}
-	result := mergeSort(arr)
-	for _, item := range result {
-		fmt.Println(item)
-	}
+	// arr := []int{1, 23, 4, 5, 2, 9, 10}
+	// result := mergeSort(arr)
+	// for _, item := range result {
+	// 	fmt.Println(item)
+	// }
 
 }
 
