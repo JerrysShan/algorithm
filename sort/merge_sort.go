@@ -1,15 +1,15 @@
 package main
 
 func main() {
-	// arr := []int{1, 23, 4, 5, 2, 9, 10}
-	// result := mergeSort(arr)
-	// for _, item := range result {
-	// 	fmt.Println(item)
-	// }
+	arr := []int{1, 23, 4, 5, 2, 9, 10}
+	result := mergeSort(arr)
+	for _, item := range result {
+		fmt.Println(item)
+	}
 
 }
 
-//归并排序
+//二路归并排序
 func mergeSort(r []int) []int {
 	length := len(r)
 	if length <= 1 {

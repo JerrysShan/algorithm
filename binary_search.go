@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	arr := []int{2, 3, 4, 5, 8, 10}
-	index := binSearch(arr, 2)
+	index := binSearch(arr, 5)
 	fmt.Println(index)
 }
 
