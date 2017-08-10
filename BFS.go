@@ -20,6 +20,7 @@ func main() {
 	}
 
 	BFS(arr, graph)
+
 	// for _, val := range graph {
 	// 	fmt.Println(val)
 	// }
@@ -49,5 +50,4 @@ func BFS(arr [][]int, graph []string) {
 			}
 		}
 	}
-
 }
