@@ -52,7 +52,7 @@ func (rb *RedBlackBST) put(h *Node, key int) *Node {
 		return &Node{
 			data:  key,
 			color: RED,
-		}
+	        }
 	}
 	if key < h.data {
 		h.left = rb.put(h.left, key)
