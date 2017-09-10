@@ -56,3 +56,31 @@ func TestBTSRank(t *testing.T) {
 		t.Errorf("15 in bst rank should be 7th,return %d", data)
 	}
 }
+
+func TestBTSFloor(t *testing.T) {
+	t.Log("test Binary_Tree_Search Floor")
+	if node := bst.Floor(5); node.Data == 4 {
+		t.Logf("low or equal 5 in bst should be 4,return result is %d ", node.Data)
+	} else {
+		t.Errorf("low or equal 5 in bst should be 4,but return result is %d", node.Data)
+	}
+}
+
+func TestBTSCeiling(t *testing.T) {
+	t.Log("test Binary_Tree_Search Ceiling")
+	if node := bst.Ceiling(7); node.Data == 9 {
+		t.Logf("greater or equal 7 in bst should b 9,return  is %d", node.Data)
+	} else {
+		t.Errorf("greater or equal 7 in bst should b 9,return  is %d", node.Data)
+	}
+}
+
+func TestBTSIndex(t *testing.T) {
+	t.Log("tes Binary_Tree_Search Index")
+	node := bst.Index(4)
+	if node != nil && node.Data == 6 {
+		t.Logf("rank 4th in bts should be 4,return %d", node.Data)
+	} else {
+		t.Errorf("rank 4th in bts should be 4,but return %d", node.Data)
+	}
+}

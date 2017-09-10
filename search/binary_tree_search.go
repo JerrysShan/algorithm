@@ -121,7 +121,7 @@ func (bt *BinaryTreeSearch) floor(key int, node *common.Node) *common.Node {
 
 //Ceiling 返回此数据结构中大于等于key的元素值
 func (bt *BinaryTreeSearch) Ceiling(key int) *common.Node {
-	return bt.floor(key, bt.Root)
+	return bt.ceiling(key, bt.Root)
 }
 
 func (bt *BinaryTreeSearch) ceiling(key int, node *common.Node) *common.Node {
@@ -132,10 +132,10 @@ func (bt *BinaryTreeSearch) ceiling(key int, node *common.Node) *common.Node {
 	if key == node.Data {
 		return node
 	}
-	if key < node.Data {
-		return bt.floor(key, node.Right)
+	if key > node.Data {
+		return bt.ceiling(key, node.Right)
 	}
-	t := bt.floor(key, node.Left)
+	t := bt.ceiling(key, node.Left)
 	if t != nil {
 		return t
 	}
@@ -166,7 +166,16 @@ func (bt *BinaryTreeSearch) Index(rank int) *common.Node {
 }
 
 func (bt *BinaryTreeSearch) index(rank int, node *common.Node) *common.Node {
-	return nil
+	if node == nil {
+		return nil
+	}
+	t := bt.size(node.Left)
+	if t > rank {
+		return bt.index(rank, node.Left)
+	} else if t < rank {
+		return bt.index(rank-t-1, node.Right)
+	}
+	return node
 }
 
 //DeleteMin 删除此数据结构中最小元素
