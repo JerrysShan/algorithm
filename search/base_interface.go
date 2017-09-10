@@ -15,8 +15,8 @@ type sortTable interface {
 	max()
 	floor()   //向下取整
 	ceiling() //向上取整
-	rank()    // 小于key键的数量
-	_select() //排名为k的数量
+	rank()    // key键的排名
+	_select() //排名为k的元素
 	deleteMin()
 	deleteMax()
 	size()

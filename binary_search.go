@@ -1,12 +1,10 @@
 package main
 
-import "fmt"
-
-func main() {
-	arr := []int{2, 3, 4, 5, 8, 10}
-	index := binSearch(arr, 6)
-	fmt.Println(index)
-}
+// func main() {
+// 	arr := []int{2, 3, 4, 5, 8, 10}
+// 	index := binSearch(arr, 6)
+// 	fmt.Println(index)
+// }
 
 //数组必须是有序的
 func binSearch(arr []int, key int) int {
