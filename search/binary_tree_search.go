@@ -3,6 +3,7 @@ package search
 import (
 	"algorithm/btree"
 	"algorithm/common"
+	"errors"
 	"fmt"
 )
 
@@ -161,13 +162,16 @@ func (bt *BinaryTreeSearch) rank(key int, node *common.Node) int {
 }
 
 //Index 返回排名为key的节点
-func (bt *BinaryTreeSearch) Index(rank int) *common.Node {
+func (bt *BinaryTreeSearch) Index(rank int) (*common.Node, error) {
 	return bt.index(rank, bt.Root)
 }
 
-func (bt *BinaryTreeSearch) index(rank int, node *common.Node) *common.Node {
+func (bt *BinaryTreeSearch) index(rank int, node *common.Node) (*common.Node, error) {
+	if rank > bt.size(bt.Root) {
+		return nil, errors.New("rank out of range")
+	}
 	if node == nil {
-		return nil
+		return nil, nil
 	}
 	t := bt.size(node.Left)
 	if t > rank {
@@ -175,7 +179,7 @@ func (bt *BinaryTreeSearch) index(rank int, node *common.Node) *common.Node {
 	} else if t < rank {
 		return bt.index(rank-t-1, node.Right)
 	}
-	return node
+	return node, nil
 }
 
 //DeleteMin 删除此数据结构中最小元素
@@ -193,13 +197,22 @@ func (bt *BinaryTreeSearch) deleteMin(node *common.Node) *common.Node {
 }
 
 //DeleteMax 删除此数据结构中最大元素
-func (bt *BinaryTreeSearch) DeleteMax() *common.Node {
-	return nil
+func (bt *BinaryTreeSearch) DeleteMax() {
+	bt.Root = bt.deleteMax(bt.Root)
+}
+
+func (bt *BinaryTreeSearch) deleteMax(node *common.Node) *common.Node {
+	if node.Right == nil {
+		return node.Left
+	}
+	node.Right = bt.deleteMin(node.Right)
+	node.N = bt.size(node.Left) + bt.size(node.Right) + 1
+	return node
 }
 
 //Delete 从此数据结构中删除一个元素
 func (bt *BinaryTreeSearch) Delete(key int) {
-
+	bt.Root = bt.delete(key, bt.Root)
 }
 
 func (bt *BinaryTreeSearch) delete(key int, node *common.Node) *common.Node {

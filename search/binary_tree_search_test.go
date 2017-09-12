@@ -77,7 +77,10 @@ func TestBTSCeiling(t *testing.T) {
 
 func TestBTSIndex(t *testing.T) {
 	t.Log("tes Binary_Tree_Search Index")
-	node := bst.Index(4)
+	node, err := bst.Index(4)
+	if err != nil {
+		t.Error(err)
+	}
 	if node != nil && node.Data == 6 {
 		t.Logf("rank 4th in bts should be 4,return %d", node.Data)
 	} else {
