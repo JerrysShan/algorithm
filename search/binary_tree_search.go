@@ -205,7 +205,7 @@ func (bt *BinaryTreeSearch) deleteMax(node *common.Node) *common.Node {
 	if node.Right == nil {
 		return node.Left
 	}
-	node.Right = bt.deleteMin(node.Right)
+	node.Right = bt.deleteMax(node.Right)
 	node.N = bt.size(node.Left) + bt.size(node.Right) + 1
 	return node
 }

@@ -76,7 +76,7 @@ func TestBTSCeiling(t *testing.T) {
 }
 
 func TestBTSIndex(t *testing.T) {
-	t.Log("tes Binary_Tree_Search Index")
+	t.Log("test Binary_Tree_Search Index")
 	node, err := bst.Index(4)
 	if err != nil {
 		t.Error(err)
@@ -86,4 +86,21 @@ func TestBTSIndex(t *testing.T) {
 	} else {
 		t.Errorf("rank 4th in bts should be 4,but return %d", node.Data)
 	}
+}
+
+func TestBTSDeleteMin(t *testing.T) {
+	t.Log("test Binary_Tree_Search DeleteMin")
+	bst.DeleteMin()
+	bst.Show()
+}
+
+func TestBTSDeleteMax(t *testing.T) {
+	t.Log("test Binary_Tree_Search DeleteMax")
+	bst.DeleteMax()
+	bst.Show()
+}
+
+func TestBTSDelete(t *testing.T) {
+	t.Log("test Binary_Tree_Search Delete")
+	bst.Show()
 }
