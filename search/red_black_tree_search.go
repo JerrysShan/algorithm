@@ -15,6 +15,9 @@ type RedBlackBST struct {
 }
 
 func (rb *RedBlackBST) isRed(h *Node) bool {
+	if h == nil {
+		return false
+	}
 	return h.color == RED
 }
 
@@ -37,9 +40,11 @@ func (rb *RedBlackBST) rotateRight(h *Node) *Node {
 }
 
 func (rb *RedBlackBST) filpColors(h *Node) {
-	h.left.color = BLACK
-	h.right.color = BLACK
-	h.color = RED
+	// isRed(h)&&!isRed(h.left)&&!isRed(h.right)
+	// !isRed(h)&&isRed(h.left)&&isRed(h.right)
+	h.left.color = !h.left.color
+	h.right.color = !h.right.color
+	h.color = !h.color
 }
 
 func (rb *RedBlackBST) putRoot(key int) {
@@ -78,17 +83,52 @@ func (rb *RedBlackBST) DeleteMin() {
 		rb.root.color = RED
 	}
 	rb.root = rb.deleteMin(rb.root)
-	rb.root.color = BLACK
+	if rb.root != nil {
+		rb.root.color = BLACK
+	}
 }
 
 func (rb *RedBlackBST) deleteMin(node *Node) *Node {
 	if node.left == nil {
 		return nil
 	}
-	return nil
+	if !rb.isRed(node.left) && !rb.isRed(node.left.left) {
+		node = rb.moveRedLeft(node)
+	}
+	node.left = rb.deleteMin(node.left)
+	return rb.balance(node)
+}
+
+func (rb *RedBlackBST) DeleteMax() {
+	if !rb.isRed(rb.root.left) && !rb.isRed(rb.root.right) {
+		rb.root.color = RED
+		rb.root = rb.deleteMax(rb.root)
+	}
+}
+
+func (rb *RedBlackBST) deleteMax(node *Node) *Node {
+	if rb.isRed(node.left) {
+		node = rb.rotateRight(node)
+	}
+	if node.right == nil {
+		return nil
+	}
+	if !rb.isRed(node.right) && rb.isRed(node.right.left) {
+		node = rb.moveRedRight(node)
+	}
+
+	node.right = rb.deleteMax(node.right)
+
+	return rb.balance(node)
+}
+
+func (rb *RedBlackBST) Delete(key int) {
+
 }
 
 func (rb *RedBlackBST) moveRedLeft(node *Node) *Node {
+	// 假设节点node为h红色，h.left和h.left.left 都是黑色。
+	// 将h.left 或者h.left 的子节点之一变红
 	rb.filpColors(node)
 	if rb.isRed(node.right.left) {
 		node.right = rb.rotateRight(node.right)
@@ -117,7 +157,5 @@ func (rb *RedBlackBST) balance(h *Node) *Node {
 	if rb.isRed(h.left) && rb.isRed(h.right) {
 		rb.filpColors(h)
 	}
-
-	// h.size = size(h.left) + size(h.right) + 1
 	return h
 }
