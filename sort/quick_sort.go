@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-var count int
-
 func main() {
 	arr := []int{1, 23, 4, 5, 2, 9, 10}
 	quickSort(arr, 0, len(arr)-1)
@@ -26,9 +24,6 @@ func quickSort(arr []int, low, high int) {
 		for arr[i] <= key && i < j {
 			i++
 		}
-		fmt.Print("j is", " ", j, " ", count, " | ")
-		fmt.Print("i is", " ", i, " ", count, " | ")
-		count++
 		if i < j {
 			arr[j], arr[i] = arr[i], arr[j]
 		}
