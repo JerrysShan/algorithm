@@ -13,3 +13,12 @@ func TestShortestPathDIJ(t *testing.T) {
 	}
 	ShortestPathDIJ(graph)
 }
+
+func TestShortestPahtFLOYD(t *testing.T) {
+	var graph = [][]int{
+		{0, 4, 11},
+		{6, 0, 2},
+		{3, MAXNUM, 0},
+	}
+	ShortestPathFLOYD(graph)
+}

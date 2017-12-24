@@ -45,7 +45,7 @@ func ShortestPathDIJ(g [][]int) {
 			}
 		}
 		final[v] = true
-		// 跟新当前最短路径及其距离
+		// 更新当前最短路径及其距离
 		for w := 0; w < len(g); w++ {
 			if (!final[w]) && (min+g[v][w] < d[w]) {
 				d[w] = min + g[v][w]
@@ -64,5 +64,52 @@ func ShortestPathDIJ(g [][]int) {
 	}
 	for k1, v1 := range path {
 		fmt.Println(k1, v1)
+	}
+}
+
+func ShortestPathFLOYD(g [][]int) {
+	fmt.Println("----------------FLOYD-----------------")
+	p := make([][][]bool, len(g)) // p[v][w][u]
+	d := make([][]int, len(g))
+	for i := 0; i < len(g); i++ {
+		d[i] = make([]int, len(g))
+		p[i] = make([][]bool, len(g))
+		for j := 0; j < len(g); j++ {
+			p[i][j] = make([]bool, len(g))
+		}
+	}
+	for v := 0; v < len(g); v++ {
+		for w := 0; w < len(g); w++ {
+			d[v][w] = g[v][w]
+			if d[v][w] < MAXNUM {
+				p[v][w][v] = true
+				p[v][w][w] = true
+			}
+		}
+	}
+	for u := 0; u < len(g); u++ {
+		for v := 0; v < len(g); v++ {
+			for w := 0; w < len(g); w++ {
+				if d[v][u]+d[u][w] < d[v][w] {
+					d[v][w] = d[v][u] + d[u][w]
+					for i := 0; i < len(g); i++ {
+						p[v][w][i] = p[v][u][i] || p[u][w][i]
+					}
+				}
+			}
+		}
+	}
+	fmt.Println("-------------D---------------")
+	for index1, li := range d {
+		for index, val := range li {
+			fmt.Println(index1, index, val)
+		}
+	}
+	for index1, l1 := range p {
+		for index2, l2 := range l1 {
+			for index3, val := range l2 {
+				fmt.Println(index1, index2, index3, val)
+			}
+		}
 	}
 }
