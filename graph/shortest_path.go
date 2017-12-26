@@ -69,7 +69,7 @@ func ShortestPathDIJ(g [][]int) {
 
 func ShortestPathFLOYD(g [][]int) {
 	fmt.Println("----------------FLOYD-----------------")
-	p := make([][][]bool, len(g)) // p[v][w][u]
+	p := make([][][]bool, len(g)) // p[v][w][u] 为true，则u是v到w当前求得最短路径上的顶点。
 	d := make([][]int, len(g))
 	for i := 0; i < len(g); i++ {
 		d[i] = make([]int, len(g))
@@ -99,7 +99,7 @@ func ShortestPathFLOYD(g [][]int) {
 			}
 		}
 	}
-	fmt.Println("-------------D---------------")
+	fmt.Println("-------------D---------------", p)
 	for index1, li := range d {
 		for index, val := range li {
 			fmt.Println(index1, index, val)
