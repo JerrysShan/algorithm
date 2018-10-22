@@ -1,16 +1,6 @@
-package main
+package sort
 
-import "fmt"
-
-func main() {
-	arr := []int{1, 23, 4, 5, 2, 9, 10}
-	quickSort(arr, 0, len(arr)-1)
-	for _, item := range arr {
-		fmt.Println(item)
-	}
-}
-
-func quickSort(arr []int, low, high int) {
+func QuickSort(arr []int, low, high int) {
 	if low > high {
 		return
 	}
