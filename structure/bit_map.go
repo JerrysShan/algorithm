@@ -1,7 +1,7 @@
 package structure
 
 const SHIFT = 5
-const MASK uint32 = 32
+const MASK uint32 = 31
 
 type BitMap struct {
 	arr []uint32
@@ -15,7 +15,7 @@ func NewBitMap(length int) *BitMap {
 
 func (b *BitMap) Set(i uint32) {
 	index := i >> SHIFT // i/32
-	b.arr[index] = b.arr[index] | 1<<(i&MASK)
+	b.arr[index] = b.arr[index] | (1 << (i & MASK))
 }
 
 func (b *BitMap) Clr(i uint32) {
