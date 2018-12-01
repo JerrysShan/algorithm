@@ -1,23 +1,14 @@
-package main
+package sort
 
-func main() {
-	arr := []int{1, 23, 4, 5, 2, 9, 10}
-	result := mergeSort(arr)
-	for _, item := range result {
-		fmt.Println(item)
-	}
-
-}
-
-//二路归并排序
-func mergeSort(r []int) []int {
+//MergeSort 二路归并排序
+func MergeSort(r []int) []int {
 	length := len(r)
 	if length <= 1 {
 		return r
 	}
 	num := length / 2
-	left := mergeSort(r[:num])
-	right := mergeSort(r[num:])
+	left := MergeSort(r[:num])
+	right := MergeSort(r[num:])
 	return merge(left, right)
 }
 

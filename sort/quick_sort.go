@@ -19,6 +19,6 @@ func QuickSort(arr []int, low, high int) {
 		}
 	}
 	arr[low], arr[i] = arr[i], arr[low]
-	quickSort(arr, low, i-1)
-	quickSort(arr, i+1, high)
+	QuickSort(arr, low, i-1)
+	QuickSort(arr, i+1, high)
 }

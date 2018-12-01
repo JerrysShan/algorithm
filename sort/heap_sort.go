@@ -1,14 +1,12 @@
-package main
+package sort
 
-import "fmt"
-
-func main() {
-	arr := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	heapSort(arr)
-	for _, val := range arr {
-		fmt.Printf("%v ", val)
-	}
-}
+// func main() {
+// 	arr := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
+// 	heapSort(arr)
+// 	for _, val := range arr {
+// 		fmt.Printf("%v ", val)
+// 	}
+// }
 
 func adjustHeap(arr []int, i, length int) {
 	left := 2*i + 1
@@ -33,7 +31,7 @@ func buildHeap(arr []int) {
 	}
 }
 
-func heapSort(arr []int) {
+func HeapSort(arr []int) {
 	length := len(arr)
 	buildHeap(arr)
 	for i := length - 1; i > 0; i-- {

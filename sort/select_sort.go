@@ -1,14 +1,12 @@
-package main
+package sort
 
-import "fmt"
-
-func main() {
-	arr := []int{1, 23, 4, 5, 2, 9, 10}
-	selectSort(&arr)
-	for _, item := range arr {
-		fmt.Println(item)
-	}
-}
+// func main() {
+// 	arr := []int{1, 23, 4, 5, 2, 9, 10}
+// 	selectSort(&arr)
+// 	for _, item := range arr {
+// 		fmt.Println(item)
+// 	}
+// }
 
 func selectSort(arr *[]int) {
 	length := len(*arr)
