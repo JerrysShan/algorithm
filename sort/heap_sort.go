@@ -11,16 +11,16 @@ package sort
 func adjustHeap(arr []int, i, length int) {
 	left := 2*i + 1
 	right := 2*i + 2
-	max := i
-	if left <= length && arr[left] > arr[i] {
-		max = left
+	min := i
+	if left <= length && arr[left] < arr[i] {
+		min = left
 	}
-	if right <= length && arr[right] > arr[max] {
-		max = right
+	if right <= length && arr[right] < arr[min] {
+		min = right
 	}
-	if max != i {
-		arr[i], arr[max] = arr[max], arr[i]
-		adjustHeap(arr, max, length)
+	if min != i {
+		arr[i], arr[min] = arr[min], arr[i]
+		adjustHeap(arr, min, length)
 	}
 }
 
