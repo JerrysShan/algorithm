@@ -1,0 +1,5 @@
+package loadbalance
+
+func Hash() {
+
+}

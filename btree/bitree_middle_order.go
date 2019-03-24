@@ -16,7 +16,6 @@ func BinTreeMiddleOrderRecursion(root *common.Node) {
 }
 
 //二叉树的中序遍历非递归算法
-
-func bitreeMiddleOrder() {
+func BitreeMiddleOrder() {
 
 }

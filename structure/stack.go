@@ -32,9 +32,21 @@ func (s *Stack) Pop() interface{} {
 	}
 	n := s.top
 	s.top = n.pre
+	s.size--
 	return n.data
 }
 
 func (s *Stack) Size() int {
 	return s.size
+}
+
+func (s *Stack) Top() interface{} {
+	if s.top == nil {
+		return nil
+	}
+	return s.top.data
+}
+
+func (s *Stack) Empty() bool {
+	return s.size == 0
 }

@@ -16,7 +16,6 @@ func BinTreeFirstOrderRecursion(root *common.Node) {
 }
 
 //二叉树的先序遍历非递归算法
-
 func BinTreeFirstOrder() {
 
 }

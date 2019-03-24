@@ -1,13 +1,5 @@
 package sort
 
-// func main() {
-// 	arr := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-// 	heapSort(arr)
-// 	for _, val := range arr {
-// 		fmt.Printf("%v ", val)
-// 	}
-// }
-
 func adjustHeap(arr []int, i, length int) {
 	left := 2*i + 1
 	right := 2*i + 2
