@@ -1,9 +1,11 @@
 package loadbalance
 
-import "math/rand"
+import (
+	"math/rand"
+)
 
 // Random 随机
-func Random(arr []interface{}) interface{} {
+func Random(arr []string) string {
 	index := rand.Intn(len(arr))
 	return arr[index]
 }
