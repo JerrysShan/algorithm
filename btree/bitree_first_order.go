@@ -2,10 +2,11 @@ package btree
 
 import (
 	"algorithm/common"
+	"algorithm/structure"
 	"fmt"
 )
 
-//二叉树的先序遍历递归算法
+// BinTreeFirstOrderRecursion 二叉树的先序遍历递归算法
 func BinTreeFirstOrderRecursion(root *common.Node) {
 	if root == nil {
 		return
@@ -15,7 +16,22 @@ func BinTreeFirstOrderRecursion(root *common.Node) {
 	BinTreeFirstOrderRecursion(root.Right)
 }
 
-//二叉树的先序遍历非递归算法
-func BinTreeFirstOrder() {
-
+// BinTreeFirstOrder 二叉树的先序遍历非递归算法
+func BinTreeFirstOrder(root *common.Node) {
+	if root == nil {
+		return
+	}
+	stack := &structure.Stack{}
+	cur := root
+	for stack.Size() > 0 || cur != nil {
+		if cur != nil {
+			fmt.Print(cur.Data, "->")
+			stack.Push(cur)
+			cur = cur.Left
+		} else {
+			top := stack.Top().(common.Node)
+			cur = top.Right
+			stack.Pop()
+		}
+	}
 }
