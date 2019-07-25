@@ -29,9 +29,10 @@ func BinTreeFirstOrder(root *common.Node) {
 			stack.Push(cur)
 			cur = cur.Left
 		} else {
-			top := stack.Top().(common.Node)
+			top := stack.Top().(*common.Node)
 			cur = top.Right
 			stack.Pop()
 		}
 	}
+	fmt.Println()
 }

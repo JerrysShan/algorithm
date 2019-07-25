@@ -25,13 +25,14 @@ func BinTreeLastOrder(root *common.Node) {
 	stack := &structure.Stack{}
 	var pre *common.Node
 	for cur != nil || stack.Size() > 0 {
-		if cur != nil {
+		for cur != nil {
 			stack.Push(cur)
 			cur = cur.Left
 		}
 		temp := stack.Top().(*common.Node)
 		if temp.Right == nil || temp.Right == pre {
 			fmt.Println(temp.Data, "->")
+			pre = temp
 			stack.Pop()
 		} else {
 			cur = temp.Right
