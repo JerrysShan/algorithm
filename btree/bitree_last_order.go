@@ -31,7 +31,7 @@ func BinTreeLastOrder(root *common.Node) {
 		}
 		temp := stack.Top().(*common.Node)
 		if temp.Right == nil || temp.Right == pre {
-			fmt.Println(temp.Data, "->")
+			fmt.Print(temp.Data, "->")
 			pre = temp
 			stack.Pop()
 		} else {

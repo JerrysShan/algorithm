@@ -29,7 +29,7 @@ func BinTreeMiddleOrder(root *common.Node) {
 			cur = cur.Left
 		}
 		temp := stack.Pop().(*common.Node)
-		fmt.Println(temp.Data, "->")
+		fmt.Print(temp.Data, "->")
 		cur = temp.Right
 	}
 }
