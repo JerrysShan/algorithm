@@ -2,7 +2,7 @@ package leetcode
 
 import "testing"
 
-func TestIsPalindrome(t *testing.T) {
-	t.Log(isPalindrome(-121))
-	t.Log(isPalindrome(10))
+func TestIsPalindrome2(t *testing.T) {
+	t.Log(isPalindromeInt(-121))
+	t.Log(isPalindromeInt(10))
 }
