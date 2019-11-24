@@ -3,6 +3,7 @@ package loadbalance
 import (
 	"hash/crc32"
 	"sort"
+	"strconv"
 )
 
 // Hash 一致性算法,用于大规模缓存系统的负载均衡
@@ -35,7 +36,7 @@ func NewHash(numberOfReplicas int) *Hash {
 func (h *Hash) Add(nodes ...string) {
 	for _, node := range nodes {
 		for i := 0; i < h.replication; i++ {
-			code := hashCode(node)
+			code := hashCode(node + strconv.Itoa(i))
 			h.nodes[code] = node
 			h.keys = append(h.keys, code)
 		}
