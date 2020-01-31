@@ -1,51 +1,45 @@
 package leetcode
 
 func exist(board [][]byte, word string) bool {
-	if board == nil || word == "" {
+	m := len(board)
+	if m == 0 {
 		return false
 	}
-	m := make(map[byte][]byte)
-	for i := 0; i < len(board); i++ {
-		for j := 0; j < len(board[i]); j++ {
-			char := board[i][j]
-			m[char] = []byte{}
-			if i-1 > -1 {
-				m[char] = append(m[char], board[i-1][j])
-			}
-			if i+1 < len(board) {
-				m[char] = append(m[char], board[i+1][j])
-			}
-			if j-1 > -1 {
-				m[char] = append(m[char], board[i][j-1])
-			}
-			if j+1 < len(board[i]) {
-				m[char] = append(m[char], board[i][j+1])
-			}
-		}
+	n := len(board[0])
+
+	marked := make([][]bool, m)
+	for i := 0; i < m; i++ {
+		marked[i] = make([]bool, n)
 	}
 
-	bufs := []byte(word)
-	for index := 0; index < len(bufs); index++ {
-		c := bufs[index]
-		if val, ok := m[c]; !ok {
-			return false
-		} else if index+1 < len(bufs) {
-			if !existsChar(bufs[index+1], val) {
-				return false
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if searchWord(board, word, 0, i, j, m, n, marked) {
+				return true
 			}
 		}
 	}
-	return true
+	return false
 }
 
-func existsChar(char byte, bytes []byte) bool {
-	if bytes == nil {
-		return false
+func searchWord(board [][]byte, word string, index, startX, startY, m, n int, marked [][]bool) bool {
+	if index == len(word)-1 {
+		return board[startX][startY] == word[index]
 	}
-	for _, v := range bytes {
-		if v == char {
-			return true
+	directions := [][]int{{0, -1}, {-1, 0}, {0, 1}, {1, 0}}
+	if board[startX][startY] == word[index] {
+		marked[startX][startY] = true
+		for _, v := range directions {
+			newX := startX + v[0]
+			newY := startY + v[1]
+			if newX >= 0 && newX < m && newY >= 0 && newY < n && !marked[newX][newY] {
+				if searchWord(board, word, index+1, newX, newY, m, n, marked) {
+					return true
+				}
+			}
 		}
+		marked[startX][startY] = false
 	}
+
 	return false
 }
