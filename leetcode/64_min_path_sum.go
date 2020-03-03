@@ -3,7 +3,7 @@ package leetcode
 import "math"
 
 func minPathSum(grid [][]int) int {
-	 m := len(grid)
+	m := len(grid)
 	if m == 0 {
 		return 0
 	}
