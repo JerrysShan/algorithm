@@ -5,28 +5,6 @@ func wordBreak(s string, wordDict []string) bool {
 }
 
 func wordBreakFun(s string, wordDict []string, start int, mem []bool) bool {
-	// if start == len(s) {
-	// 	return true
-	// }
-	// for end := start + 1; end <= len(s); end++ {
-	// 	t := s[start:end]
-	// 	if mem[start] {
-	// 		return true
-	// 	}
-	// 	isExist := false
-	// 	for _, v := range wordDict {
-	// 		if v == t {
-	// 			isExist = true
-	// 		}
-	// 	}
-	// 	if isExist && wordBreakFun(s, wordDict, end, mem) {
-	// 		mem[start] = true
-	// 		return true
-	// 	}
-	// }
-	// mem[start] = false
-	// return false
-
 	dp := make([]bool, len(s)+1)
 	dp[0] = true
 	for i := 1; i <= len(s); i++ {
@@ -44,4 +22,23 @@ func wordBreakFun(s string, wordDict []string, start int, mem []bool) bool {
 		}
 	}
 	return dp[len(s)]
+}
+
+func wordBreakFun2(s string, wordDict []string, start int) bool {
+	if start == len(s) {
+		return true
+	}
+	for end := start + 1; end <= len(s); end++ {
+		isContain := false
+		for _, v := range wordDict {
+			if v == s[start:end] {
+				isContain = true
+				break
+			}
+		}
+		if isContain && wordBreakFun2(s, wordDict, end) {
+			return true
+		}
+	}
+	return false
 }

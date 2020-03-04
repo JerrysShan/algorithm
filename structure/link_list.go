@@ -63,9 +63,9 @@ func FindCross(listA, listB *List) {
 }
 
 // LinkListReverse 单向链表的翻转
-func LinkListReverse(list *List) *List {
+func LinkListReverse(list *List) {
 	if list == nil {
-		return list
+		return
 	}
 	cur := list.head
 	next := cur.next
@@ -75,5 +75,6 @@ func LinkListReverse(list *List) *List {
 		cur = next
 		next = nextnext
 	}
-	return list
+	// list.head.next = nil
+	list.head = cur
 }

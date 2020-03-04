@@ -2,8 +2,6 @@ package structure
 
 import (
 	"testing"
-
-	"github.com/bmizerany/assert"
 )
 
 func TestIsLoop(t *testing.T) {
@@ -23,7 +21,13 @@ func TestIsLoop(t *testing.T) {
 	n1.next = n2
 	n2.next = n3
 	n3.next = n4
-	n4.next = n2
+	// n4.next = n2
 	list := &List{head: n1}
-	assert.Equal(t, IsLoop(list), true, "IsLoop return should be true")
+	// assert.Equal(t, IsLoop(list), true, "IsLoop return should be true")
+	LinkListReverse(list)
+	cur := list.head
+	for cur != nil {
+		t.Log(cur.data)
+		cur = cur.next
+	}
 }
