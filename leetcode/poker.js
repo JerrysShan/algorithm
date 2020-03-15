@@ -18,9 +18,9 @@ function reverse(arr) {
     let i = 1;
     while (arr.length) {
         if (i % 2) {
-            out.unshift(arr.pop())
+            out.push(arr.shift());
         } else {
-            out.unshift(out.pop());
+            out.push(out.shift());
         }
         i++;
     }

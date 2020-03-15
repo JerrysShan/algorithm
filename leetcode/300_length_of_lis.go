@@ -6,8 +6,8 @@ func lengthOfLIS(nums []int) int {
 		return 0
 	}
 	dp := make([]int, len(nums))
+	dp[0] = 1
 	for i := 0; i < len(nums); i++ {
-		dp[i] = 1
 		for j := 0; j < i; j++ {
 			if nums[j] < nums[i] {
 				if dp[j]+1 > dp[i] {
