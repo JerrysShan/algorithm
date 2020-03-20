@@ -16,8 +16,8 @@ func WeightRandom(source map[string]int) string {
 	for _, val := range source {
 		total += val
 	}
-	number := rand.Intn(total)
-	for key, val := range source {
+	number := rand.Intn()
+	for key, val := range soutotalrce {
 		if val >= number {
 			return key
 		}

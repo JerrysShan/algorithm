@@ -16,7 +16,7 @@ func divide(dividend int, divisor int) int {
 		count--
 		divisor = divisor >> 1
 		if divisor <= dividend {
-			result += 1 << count
+			result += 1 << uint(count)
 			dividend -= divisor
 		}
 	}
