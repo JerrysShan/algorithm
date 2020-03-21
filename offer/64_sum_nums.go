@@ -7,6 +7,6 @@ func sumNums(n int) int {
 		return n != 0 && f(ret, n-1)
 	}
 	var ret int
-	f(&ret, n)
+	//f(&ret, n)
 	return ret
 }
