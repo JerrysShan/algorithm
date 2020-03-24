@@ -1,5 +1,7 @@
 package leetcode
 
+import "math"
+
 func coinChange(coins []int, amount int) int {
 	dp := make([]int, amount+1) // dp[i]标识凑零钱i的最小值
 	for i := 0; i < len(dp); i++ {
@@ -28,17 +30,18 @@ func split(coins []int, amount int) int {
 	if amount < 0 {
 		return -1
 	}
-	result := -1
+	result := math.MaxInt32
 	for i := 0; i < len(coins); i++ {
 		min := split(coins, amount-coins[i])
 		if min == -1 {
 			continue
 		}
-		if result == -1 {
-			result = min
-		} else if result > min+1 {
+		if result > min+1 {
 			result = min + 1
 		}
+	}
+	if result == math.MaxInt32 {
+		return -1
 	}
 	return result
 }
